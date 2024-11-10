@@ -1,0 +1,329 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input BooleanNullableFilter {
+  equals: Boolean
+  not: Boolean
+}
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+input JsonFilter {
+  equals: JSONObject
+  not: JSONObject
+}
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  AddPhoto(args: String!): String!
+  DeletePhoto(args: String!): String!
+  Login(args: String!): String!
+  Logout(args: String!): String!
+  Register(email: String!, firstName: String!, lastName: String!, password: String!, username: String!): RegisterInputObject!
+  SetProfilePhoto(args: String!): String!
+  UpdateProfile(email: String!, firstName: String!, lastName: String!, password: String!, username: String!): RegisterInputObject!
+  createPhoto(data: PhotoCreateInput!): Photo!
+  createProfile(data: ProfileCreateInput!): Profile!
+  createUser(data: UserCreateInput!): User!
+  deletePhoto(where: PhotoWhereUniqueInput!): Photo!
+  deleteProfile(where: ProfileWhereUniqueInput!): Profile!
+  deleteSession(where: SessionWhereUniqueInput!): Session!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updatePhoto(data: PhotoUpdateInput!, where: PhotoWhereUniqueInput!): Photo!
+  updateProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Photo {
+  createdAt: DateTime!
+  id: String!
+  isDefaultProfilePhoto: Boolean
+  photoUrl: String
+  updatedAt: DateTime!
+  user: User
+}
+
+input PhotoCreateInput {
+  isDefaultProfilePhoto: Boolean
+  photoUrl: String
+  user: UserWhereUniqueInput
+}
+
+input PhotoCreateNestedManyWithoutUsersInput {
+  connect: [PhotoWhereUniqueInput!]
+}
+
+input PhotoListRelationFilter {
+  every: PhotoWhereInput
+  none: PhotoWhereInput
+  some: PhotoWhereInput
+}
+
+input PhotoOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  isDefaultProfilePhoto: SortOrder
+  photoUrl: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input PhotoUpdateInput {
+  isDefaultProfilePhoto: Boolean
+  photoUrl: String
+  user: UserWhereUniqueInput
+}
+
+input PhotoUpdateManyWithoutUsersInput {
+  connect: [PhotoWhereUniqueInput!]
+  disconnect: [PhotoWhereUniqueInput!]
+  set: [PhotoWhereUniqueInput!]
+}
+
+input PhotoWhereInput {
+  id: StringFilter
+  isDefaultProfilePhoto: BooleanNullableFilter
+  photoUrl: StringNullableFilter
+  user: UserWhereUniqueInput
+}
+
+input PhotoWhereUniqueInput {
+  id: String!
+}
+
+type Profile {
+  bio: String
+  createdAt: DateTime!
+  id: String!
+  phoneNumber: String
+  profilePhoto: JSON
+  updatedAt: DateTime!
+  user: User
+}
+
+input ProfileCreateInput {
+  bio: String
+  phoneNumber: String
+  profilePhoto: JSON
+  user: UserWhereUniqueInput
+}
+
+input ProfileCreateNestedManyWithoutUsersInput {
+  connect: [ProfileWhereUniqueInput!]
+}
+
+input ProfileListRelationFilter {
+  every: ProfileWhereInput
+  none: ProfileWhereInput
+  some: ProfileWhereInput
+}
+
+input ProfileOrderByInput {
+  bio: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  phoneNumber: SortOrder
+  profilePhoto: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input ProfileUpdateInput {
+  bio: String
+  phoneNumber: String
+  profilePhoto: JSON
+  user: UserWhereUniqueInput
+}
+
+input ProfileUpdateManyWithoutUsersInput {
+  connect: [ProfileWhereUniqueInput!]
+  disconnect: [ProfileWhereUniqueInput!]
+  set: [ProfileWhereUniqueInput!]
+}
+
+input ProfileWhereInput {
+  bio: StringNullableFilter
+  id: StringFilter
+  phoneNumber: StringNullableFilter
+  profilePhoto: JsonFilter
+  user: UserWhereUniqueInput
+}
+
+input ProfileWhereUniqueInput {
+  id: String!
+}
+
+type Query {
+  _photosMeta(where: PhotoWhereInput): MetaQueryPayload!
+  _profilesMeta(where: ProfileWhereInput): MetaQueryPayload!
+  _sessionsMeta(where: SessionWhereInput): MetaQueryPayload!
+  _usersMeta(where: UserWhereInput): MetaQueryPayload!
+  photo(where: PhotoWhereUniqueInput!): Photo
+  photos(orderBy: [PhotoOrderByInput!], skip: Float, take: Float, where: PhotoWhereInput): [Photo!]!
+  profile(where: ProfileWhereUniqueInput!): Profile
+  profiles(orderBy: [ProfileOrderByInput!], skip: Float, take: Float, where: ProfileWhereInput): [Profile!]!
+  session(where: SessionWhereUniqueInput!): Session
+  sessions(orderBy: [SessionOrderByInput!], skip: Float, take: Float, where: SessionWhereInput): [Session!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+type RegisterInputObject {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  username: String!
+}
+
+type Session {
+  createdAt: DateTime!
+  id: String!
+  updatedAt: DateTime!
+}
+
+input SessionOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input SessionWhereInput {
+  id: StringFilter
+}
+
+input SessionWhereUniqueInput {
+  id: String!
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type User {
+  createdAt: DateTime!
+  email: String
+  firstName: String
+  id: String!
+  lastName: String
+  photos(orderBy: [PhotoOrderByInput!], skip: Float, take: Float, where: PhotoWhereInput): [Photo!]!
+  profiles(orderBy: [ProfileOrderByInput!], skip: Float, take: Float, where: ProfileWhereInput): [Profile!]!
+  roles: JSON!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  email: String
+  firstName: String
+  lastName: String
+  password: String!
+  photos: PhotoCreateNestedManyWithoutUsersInput
+  profiles: ProfileCreateNestedManyWithoutUsersInput
+  roles: JSON!
+  username: String!
+}
+
+type UserInfo {
+  accessToken: String
+  id: String!
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  email: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  email: String
+  firstName: String
+  lastName: String
+  password: String
+  photos: PhotoUpdateManyWithoutUsersInput
+  profiles: ProfileUpdateManyWithoutUsersInput
+  roles: JSON
+  username: String
+}
+
+input UserWhereInput {
+  email: StringNullableFilter
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  photos: PhotoListRelationFilter
+  profiles: ProfileListRelationFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}

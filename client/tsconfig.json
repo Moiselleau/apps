@@ -1,0 +1,45 @@
+{
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/.server/**/*.ts",
+    "**/.server/**/*.tsx",
+    "**/.client/**/*.ts",
+    "**/.client/**/*.tsx"
+  ],
+  "compilerOptions": {
+    // Configuration de base
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    
+    // Support React
+    "jsx": "react-jsx",
+    
+    // Types et résolution des modules
+    "types": ["@remix-run/node", "vite/client"],
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"]  // Permet d'utiliser des imports absolus depuis le dossier app
+    },
+    
+    // Options de vérification stricte
+    "strict": true,
+    "noEmit": true,      // Important pour Vite/Remix
+    "allowJs": true,
+    "checkJs": true,     // Ajouter la vérification des fichiers JS
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    
+    // Optimisations
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    
+    // Options supplémentaires recommandées
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  }
+}
